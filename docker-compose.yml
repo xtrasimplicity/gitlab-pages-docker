@@ -1,0 +1,15 @@
+---
+version: '3.5'
+services:
+    gitlab-pages:
+      image: xtrasimplicity/gitlab-pages
+      build: .
+      environment:
+        PAGES_DOMAIN:
+        AUTH_CLIENT_ID:
+        AUTH_CLIENT_SECRET:
+        AUTH_SECRET:
+        GITLAB_SERVER:
+        AUTH_REDIRECT_URI:
+      volumes:
+        - ./pages_root:/pages_root

@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+pages_args=''
+
+pages_args="${pages_args} -listen-http 0.0.0.0:3000"
+
+if [ -n "${HTTPS_BIND_PORT}" ]; then
+  pages_args="${pages_args} -listen-https 0.0.0.0:${HTTPS_BIND_PORT}"
+fi
+
+pages_args="${pages_args} -pages-root /pages_root"
+
+if [ -n "${PAGES_DOMAIN}" ]; then
+  pages_args="${pages_args} -pages-domain ${PAGES_DOMAIN}"
+fi
+
+cmd="gitlab-pages ${pages_args}"
+echo "Running ${cmd}"
+exec $cmd
